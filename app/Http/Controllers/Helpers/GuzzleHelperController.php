@@ -12,7 +12,11 @@ class GuzzleHelperController extends Controller
     protected $url_core='https://newsapi.org/v2/';
 
     protected $country='us';
+
+    //availble categories
+    //business entertainment general health science sports technology
     protected $category='general';
+
     protected $type='top-headlines';
 
     /**

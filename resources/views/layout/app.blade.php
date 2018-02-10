@@ -37,6 +37,16 @@
 
 </body>
 
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 footer_wrapper">
+            Powered by <a href="https://newsapi.org/">newsApi.org</a>
+        </div>
+    </div>
+</div>
+</footer>
+
 @section('javascript')
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="http://brm.io/js/libs/matchHeight/jquery.matchHeight-min.js"></script>

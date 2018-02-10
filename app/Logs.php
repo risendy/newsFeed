@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Logs extends Model
 {
+	protected $fillable = array('url', 'category', 'country', 'status', 'totalResults', 'jsonRaw');
     protected $table = 'logs';
     public $timestamps = true;
 
