@@ -64,7 +64,10 @@ footer p {
 }
 
 .thumbnail>img {
-  height: 300px; width: 100%; display: block;
+  max-height: 300px;
+  height: 100%; 
+  width: 100%; 
+  display: block;
 }
 
 .footer_wrapper {
@@ -74,12 +77,12 @@ footer p {
 }
 
 .timeText {
-  position: relative;
+  position: absolute;
   font-weight: bold;
   font-size: 24px;
   color:white;
-  left: 12px;
-  top:-48px;
+  right: 12px;
+  top: 12px;
   padding:7px;
   background-color:black;
 }

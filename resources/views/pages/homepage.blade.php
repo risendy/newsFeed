@@ -1,29 +1,7 @@
 @extends('layout.app')
 
 @section('sidebar')
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Menu</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="{{route('homepage')}}">Home</a></li>
-            <li class=""><a href="{{route('homepage')}}">Business</a></li>
-            <li class=""><a href="{{route('homepage')}}">Health</a></li>
-            <li class=""><a href="{{route('homepage')}}">Science</a></li>
-            <li class=""><a href="{{route('homepage')}}">Sports</a></li>
-            <li class=""><a href="{{route('homepage')}}">Technology</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+    @include('includes.sidebar', ["page"=>1])
 @endsection
 
 @section('content')
@@ -64,6 +42,8 @@
    
 
         @endforeach 
+
+        {{ $news->links() }} 
         
 
 </div><!-- End wrapper -->
@@ -114,14 +94,14 @@
 
           </ul>
 
-          <h4>Najbardziej popularne</h4>
+          <!-- <h4>Najbardziej popularne</h4>
           <ul class="list-group">
             <li class="list-group-item">Cras justo odio</li>
             <li class="list-group-item">Dapibus ac facilisis in</li>
             <li class="list-group-item">Morbi leo risus</li>
             <li class="list-group-item">Porta ac consectetur ac</li>
             <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
+          </ul> -->
         </div>
 
       </div>
@@ -141,4 +121,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.1/jquery.timeago.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/src/loadingoverlay.min.js"></script>
     <script src="https://use.fontawesome.com/4aef0cce73.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 @endsection

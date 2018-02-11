@@ -55,17 +55,23 @@ class NewsController extends Controller
               $log->jsonRaw=$response_json;
               $log->save();
 
-              for ($i=0; $i < sizeof($response_array['articles']); $i++) { 
-                  $news=New News();
-                  $news->title=$response_array['articles'][$i]['title'];
-                  $news->author=$response_array['articles'][$i]['author'];
-                  $news->description=$response_array['articles'][$i]['description'];
-                  $news->country=$this->client->getCountry();
-                  $news->category=$this->client->getCategory();
-                  $news->url=$response_array['articles'][$i]['url'];
-                  $news->urlToImage=$response_array['articles'][$i]['urlToImage'];
-                  $news->publishedAt=date("Y-m-d H:i:s", strtotime($response_array['articles'][$i]['publishedAt']));
-                  $news->save();
+              for ($i=0; $i < sizeof($response_array['articles']); $i++) {
+                  $checkIfExists=News::where('url', $response_array['articles'][$i]['url'])->first();
+
+                  if (!$checkIfExists)
+                  {
+                    $news=New News();
+                    $news->title=$response_array['articles'][$i]['title'];
+                    $news->author=$response_array['articles'][$i]['author'];
+                    $news->description=$response_array['articles'][$i]['description'];
+                    $news->country=$this->client->getCountry();
+                    $news->category=$this->client->getCategory();
+                    $news->url=$response_array['articles'][$i]['url'];
+                    $news->urlToImage=$response_array['articles'][$i]['urlToImage'];
+                    $news->publishedAt=date("Y-m-d H:i:s", strtotime($response_array['articles'][$i]['publishedAt']));
+                    $news->save();
+                  }
+                  
               }
            }
          }

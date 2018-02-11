@@ -12,11 +12,7 @@
 |
 */
 
-Route::get('test', function () {
-	
-	
-	
-});
-
 Route::get('/', 'HomepageController@index')->name('homepage');
-Route::get('getNews', 'NewsController@getNews');
+Route::get('type/{id}', 'HomepageController@getPage')->name('type');
+
+Route::get('getNews', 'commands.NewsController@getNews');
