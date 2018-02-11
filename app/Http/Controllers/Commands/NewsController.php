@@ -8,15 +8,18 @@ use App\News as News;
 use App\Logs as Logs;
 use App\Http\Controllers\Helpers\GuzzleHelperController as GuzzleHelper;
 
+use App\Http\Controllers\Repositories\NewsRepository as NewsRepository;
+use App\Http\Controllers\Repositories\LogsRepository as LogsRepository;
+
 class NewsController extends Controller
 {
+    protected $client;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    protected $client;
-
     public function __construct()
     {
         $this->client=New GuzzleHelper();
@@ -30,12 +33,13 @@ class NewsController extends Controller
             exit;
          } 
 
+         $newsRepository=new NewsRepository();
+         $logsRepository=new LogsRepository();
+
          $categories = $this->client->getAvailbleCategories();
 
          for ($j=0; $j < sizeof($categories); $j++) { 
-           $category = $categories[$j];
-
-           $this->client->setCategory($category);
+           $this->client->setCategory($categories[$j]);
 
            $response_json = $this->client->sendRequest();
            
@@ -43,33 +47,34 @@ class NewsController extends Controller
            {
               $response_array = json_decode($response_json, true);
 
-              $status=$response_array['status'];
-              $totalResults=$response_array['totalResults'];
+              $arrayLog=array(
+                "url"=>$this->client->buildUrl(),
+                "category"=>$this->client->getCategory(),
+                "country"=>$this->client->country(),
+                "status"=>$response_array['status'],
+                "totalResults"=>$response_array['totalResults'],
+                "jsonRaw"=>$jsonRaw
+              );
 
-              $log=New Logs();
-              $log->url=$this->client->buildUrl();
-              $log->category=$this->client->getCategory();
-              $log->country=$this->client->getCountry();
-              $log->status=$status;
-              $log->totalResults=$totalResults;
-              $log->jsonRaw=$response_json;
-              $log->save();
+              $logsRepository->createNewLog($arrayLog);
 
               for ($i=0; $i < sizeof($response_array['articles']); $i++) {
-                  $checkIfExists=News::where('url', $response_array['articles'][$i]['url'])->first();
+                  $checkIfExists=$newsRepository->checkIfNewsExists($response_array['articles'][$i]['url']);
 
                   if (!$checkIfExists)
                   {
-                    $news=New News();
-                    $news->title=$response_array['articles'][$i]['title'];
-                    $news->author=$response_array['articles'][$i]['author'];
-                    $news->description=$response_array['articles'][$i]['description'];
-                    $news->country=$this->client->getCountry();
-                    $news->category=$this->client->getCategory();
-                    $news->url=$response_array['articles'][$i]['url'];
-                    $news->urlToImage=$response_array['articles'][$i]['urlToImage'];
-                    $news->publishedAt=date("Y-m-d H:i:s", strtotime($response_array['articles'][$i]['publishedAt']));
-                    $news->save();
+                    $arrayNews=array(
+                      "title"=>$response_array['articles'][$i]['title'],
+                      "author"=>$response_array['articles'][$i]['author'],
+                      "description"=>$response_array['articles'][$i]['description'],
+                      "country"=>$this->client->getCountry(),
+                      "category"=>$this->client->getCategory(),
+                      "url"=>$response_array['articles'][$i]['url'],
+                      "urlToImage"=>$response_array['articles'][$i]['urlToImage'],
+                      "publishedAt"=>$response_array['articles'][$i]['publishedAt'],
+                    );
+
+                    $newsRepository->createNewNews($arrayNews);
                   }
                   
               }

@@ -56,9 +56,9 @@
       <div class="col-md-12">
 
         <div class="col-md-8">
-            <h4>Buisness</h4>
+            <h4>Business</h4>
 
-            @foreach($buisness as $item)
+            @foreach($business as $item)
             <div class="media">
               <div class="media-left">
 

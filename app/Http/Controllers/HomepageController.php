@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Repositories\NewsRepository as NewsRepository;
 use App\News as News;
 
 class HomepageController extends Controller
@@ -19,39 +20,44 @@ class HomepageController extends Controller
 
     public function index()
     {
-       $news = News::where('urlToImage', '<>', '', 'and')->where('category', 'general')->orderBy('publishedAt', 'desc')->paginate(8);
-       $mostRecent = News::orderBy('publishedAt', 'desc')->take(4)->get();
-       $buisness = News::where('description', '<>', '', 'and')->where('category', 'business')->orderBy('publishedAt', 'desc')->take(4)->get();
+       $newsRepository=new NewsRepository();
 
-       return view('pages.homepage', compact('news', 'buisness', 'mostRecent'));
+       $news=$newsRepository->getHeadlines('general', 8);
+       $business = $newsRepository->getHeadlines('business', 4);
+
+       $mostRecent = $newsRepository->getMostRecent(4);
+
+       return view('pages.homepage', compact('news', 'business', 'mostRecent'));
     }   
 
     public function getPage($page_id)
     {
+      $newsRepository=new NewsRepository();
+
       //buisness
       if ($page_id==2)
       {
-         $news = News::where('urlToImage', '<>', '', 'and')->where('category', 'business')->orderBy('publishedAt', 'desc')->paginate(12);
+         $news=$newsRepository->getHeadlines('business', 12);
       }
       //health
       else if ($page_id==3)
       {
-          $news = News::where('urlToImage', '<>', '', 'and')->where('category', 'health')->orderBy('publishedAt', 'desc')->take(8)->paginate(12);
+          $news=$newsRepository->getHeadlines('health', 12);
       }
       //health
       else if ($page_id==4)
       {
-          $news = News::where('urlToImage', '<>', '', 'and')->where('category', 'science')->orderBy('publishedAt', 'desc')->paginate(12);
+          $news=$newsRepository->getHeadlines('science', 12);
       }
       //health
       else if ($page_id==5)
       {
-          $news = News::where('urlToImage', '<>', '', 'and')->where('category', 'sports')->orderBy('publishedAt', 'desc')->paginate(12);
+          $news=$newsRepository->getHeadlines('sports', 12);
       }
       //health
       else if ($page_id==6)
       {
-          $news = News::where('urlToImage', '<>', '', 'and')->where('category', 'technology')->orderBy('publishedAt', 'desc')->paginate(12);
+          $news=$newsRepository->getHeadlines('technology', 12);
       }
 
        return view('pages.pages', compact('page_id', 'news'));
