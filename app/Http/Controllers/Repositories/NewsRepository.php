@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 use App\News as News;
+use App\Http\Controllers\Controller;
 
 class NewsRepository
 {

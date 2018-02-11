@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Commands;
 
 use App;
 use App\Http\Controllers\Controller;
@@ -50,10 +50,10 @@ class NewsController extends Controller
               $arrayLog=array(
                 "url"=>$this->client->buildUrl(),
                 "category"=>$this->client->getCategory(),
-                "country"=>$this->client->country(),
+                "country"=>$this->client->getCountry(),
                 "status"=>$response_array['status'],
                 "totalResults"=>$response_array['totalResults'],
-                "jsonRaw"=>$jsonRaw
+                "jsonRaw"=>$response_json
               );
 
               $logsRepository->createNewLog($arrayLog);
@@ -71,7 +71,7 @@ class NewsController extends Controller
                       "category"=>$this->client->getCategory(),
                       "url"=>$response_array['articles'][$i]['url'],
                       "urlToImage"=>$response_array['articles'][$i]['urlToImage'],
-                      "publishedAt"=>$response_array['articles'][$i]['publishedAt'],
+                      "publishedAt"=>date("Y-m-d H:i:s", strtotime($response_array['articles'][$i]['publishedAt']))
                     );
 
                     $newsRepository->createNewNews($arrayNews);
