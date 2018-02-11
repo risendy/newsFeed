@@ -73,4 +73,14 @@ footer p {
   text-decoration: none;
 }
 
+.timeText {
+  position: relative;
+  font-weight: bold;
+  font-size: 24px;
+  color:white;
+  left: 12px;
+  top:-48px;
+  padding:7px;
+  background-color:black;
+}
 

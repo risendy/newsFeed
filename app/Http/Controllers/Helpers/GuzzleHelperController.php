@@ -13,11 +13,10 @@ class GuzzleHelperController extends Controller
 
     protected $country='us';
 
-    //availble categories
-    //business entertainment general health science sports technology
     protected $category='general';
 
     protected $type='top-headlines';
+    protected $availbleCategories=array("business", "entertainment", "general", "health", "science", "sports", "technology");
 
     /**
      * Create a new controller instance.
@@ -66,6 +65,10 @@ class GuzzleHelperController extends Controller
     }
     public function setType($type) {
         $this->type = $type;
+    }
+
+    public function getAvailbleCategories() {
+        return $this->availbleCategories;
     }
     //
 }

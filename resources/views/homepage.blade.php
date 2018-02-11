@@ -15,7 +15,11 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="{{route('homepage')}}">Home</a></li>
-            <li class=""><a href="{{route('homepage')}}">World</a></li>
+            <li class=""><a href="{{route('homepage')}}">Business</a></li>
+            <li class=""><a href="{{route('homepage')}}">Health</a></li>
+            <li class=""><a href="{{route('homepage')}}">Science</a></li>
+            <li class=""><a href="{{route('homepage')}}">Sports</a></li>
+            <li class=""><a href="{{route('homepage')}}">Technology</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -36,6 +40,10 @@
                 <div class="thumbnail">
                     <img data-holder-rendered="true"
                          src="{{$item->urlToImage}}">
+
+                         <span class="timeText">
+                           <time class="timeago" datetime="{{$item->publishedAt}}">{{$item->publishedAt}}</time>
+                         </span>
 
                     <div class="caption">
                         <h3 id="thumbnail-label"><a href="{{$item->url}}">{{$item->title}}</a><a class="anchorjs-link"
@@ -68,54 +76,42 @@
       <div class="col-md-12">
 
         <div class="col-md-8">
-            <h4>World</h4>
+            <h4>Buisness</h4>
+
+            @foreach($buisness as $item)
             <div class="media">
               <div class="media-left">
-                <a href="#">
-                  <img class="media-object" src="http://placehold.it/64x64" alt="...">
+
+                @if ($item->urlToImage)
+                <a href="{{$item->url}}">
+                  <img class="media-object" src="{{$item->urlToImage}}" style="width:64px; height:64px;">
                 </a>
+                @else
+                <a href="{{$item->url}}">
+                  <img class="media-object" src="http://via.placeholder.com/64x64" style="width:64px; height:64px;">
+                </a>
+                @endif
               </div>
               <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                <h4 class="media-heading"><a href="{{$item->url}}">{{$item->title}}</a></h4>
+                {{$item->description}}
               </div>
             </div>
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img class="media-object" src="http://placehold.it/64x64" alt="...">
-                </a>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img class="media-object" src="http://placehold.it/64x64" alt="...">
-                </a>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">Media heading</h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
+            @endforeach 
+
         </div>
 
         <div class="col-md-4">
           <h4>Najnowsze</h4>
           <ul class="list-group">
+
+            @foreach($mostRecent as $item)
             <li class="list-group-item">
-                <span class="text-orientation-left-css">11:12, Kielce</span> <p> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                <span class="text-orientation-left-css timeago"><time class="timeago" datetime="{{$item->publishedAt}}">{{$item->publishedAt}}</time></span> <p> <a href="{{$item->url}}">{{$item->title}}</a></p>
             </li>
-            <li class="list-group-item">
-                <span class="text-orientation-left-css">11:12, Kielce</span> <p> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-            </li>
-            <li class="list-group-item">
-                <span class="text-orientation-left-css">11:12, Kielce</span> <p> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-            </li>
+            @endforeach 
+
+
           </ul>
 
           <h4>Najbardziej popularne</h4>
@@ -136,6 +132,13 @@
 @section('javascript')
     @parent 
 
+    <script type="text/javascript">
+      jQuery(document).ready(function() {
+          jQuery("time.timeago").timeago();
+      });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.1/jquery.timeago.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/src/loadingoverlay.min.js"></script>
     <script src="https://use.fontawesome.com/4aef0cce73.js"></script>
 @endsection
