@@ -14,7 +14,6 @@ class LogsRepository
      $log->country=$array['country'];
      $log->status=$array['status'];
      $log->totalResults=$array['totalResults'];
-     $log->jsonRaw=$array['jsonRaw'];
      $log->save();
   }
 

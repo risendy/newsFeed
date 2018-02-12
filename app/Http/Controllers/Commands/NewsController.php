@@ -52,8 +52,7 @@ class NewsController extends Controller
                 "category"=>$this->client->getCategory(),
                 "country"=>$this->client->getCountry(),
                 "status"=>$response_array['status'],
-                "totalResults"=>$response_array['totalResults'],
-                "jsonRaw"=>$response_json
+                "totalResults"=>$response_array['totalResults']
               );
 
               $logsRepository->createNewLog($arrayLog);
