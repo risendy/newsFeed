@@ -82,7 +82,7 @@
         </div>
 
         <div class="col-md-4">
-          <h4>Najnowsze</h4>
+          <h4>Most recent</h4>
           <ul class="list-group">
 
             @foreach($mostRecent as $item)

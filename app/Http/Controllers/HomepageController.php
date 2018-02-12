@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Repositories\NewsRepository as NewsRepository;
 use App\News as News;
+use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
@@ -61,7 +62,18 @@ class HomepageController extends Controller
       }
 
        return view('pages.pages', compact('page_id', 'news'));
-    }   
+    }  
+
+    public function search (Request $request)
+    {
+      $newsRepository=new NewsRepository();
+
+      $searchText = trim($request->input('searchText'));
+
+      $news = $newsRepository->searchNews($searchText);
+
+      return view('pages.search', compact('news', 'searchText'));
+    } 
 
     //
 }

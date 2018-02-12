@@ -14,5 +14,6 @@
 
 Route::get('/', 'HomepageController@index')->name('homepage');
 Route::get('type/{id}', 'HomepageController@getPage')->name('type');
+Route::post('search', 'HomepageController@search')->name('search');
 
 Route::get('getNews', 'Commands\NewsController@getNews');
