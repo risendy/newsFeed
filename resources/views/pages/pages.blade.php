@@ -16,8 +16,11 @@
 
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <img data-holder-rendered="true"
-                         src="{{$item->urlToImage}}">
+                    @if ($item->urlToImage)
+                      <img data-holder-rendered="true" src="{{$item->urlToImage}}">
+                    @else
+                      <img data-holder-rendered="true" src="http://via.placeholder.com/460x300">
+                    @endif
 
                          <span class="timeText">
                            <time class="timeago" datetime="{{$item->publishedAt}}">{{$item->publishedAt}}</time>
