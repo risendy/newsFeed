@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\News as News;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class NewsRepository
 {
@@ -45,6 +46,11 @@ class NewsRepository
       $q2->whereRaw( 'LOWER(`title`) like ?', array('%'.$findNews.'%'));
       $q2->orWhereRaw( 'LOWER(`description`) like ?', array('%'.$findNews.'%'));
    })->paginate(20);
+ }
+
+ public function removeOldNews($days)
+ {
+   return News::where('creation_date', '<=', Carbon::now()->subDays($days)->toDateTimeString())->delete();
  }
 
 }

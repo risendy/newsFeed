@@ -17,3 +17,4 @@ Route::get('type/{id}', 'HomepageController@getPage')->name('type');
 Route::post('search', 'HomepageController@search')->name('search');
 
 Route::get('getNews', 'Commands\NewsController@getNews');
+Route::get('recycleNews', 'Commands\RecycleController@recycleNews');

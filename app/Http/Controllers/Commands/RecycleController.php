@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Commands;
 
-use App;
 use App\Http\Controllers\Controller;
-use App\News as News;
-use App\Logs as Logs;
-use App\Http\Controllers\Helpers\GuzzleHelperController as GuzzleHelper;
+use App\Http\Controllers\Services\RecycleService as RecycleService;
+use App;
 
-class NewsController extends Controller
+class RecycleController extends Controller
 {
-    protected $client;
-
+    protected $recycleService;
     /**
      * Create a new controller instance.
      *
@@ -19,10 +16,10 @@ class NewsController extends Controller
      */
     public function __construct()
     {
-        $this->client=New GuzzleHelper();
+        $this->recycleService=new RecycleService();
     }
 
-    public function getNews()
+    public function recycleNews()
     {
          if ($_SERVER['HTTP_USER_AGENT'] != '3215523')
          {
@@ -30,6 +27,6 @@ class NewsController extends Controller
             exit;
          }
 
-         $this->client->processNews();
+         $this->recycleService->removeOldNews();
       }  
 }
