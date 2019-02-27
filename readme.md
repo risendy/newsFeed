@@ -1,10 +1,19 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Features](#features)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## General info
+Laravel news feed portal using newsapi.org
+	
+## Technologies
+Project is created with:
+* Laravel 5.4
+* Guzzlehttp/guzzle 6.3
+* JQuery Timeago library 1.6.1
 
-News portal made using newsApi.org. Live demo: http://risendy.ayz.pl/newsFeed/public/
+## Features
+* Displaying recent news headlines
+* Displaying news in categories: Business, Health, Science, Sports, Technology
+* Comes with the command enabling to fetch headlines from newsApi.org and save them to database. Can be easily set up with cron to always have the most recent news without any work.
+* Comes with the command to recycle old News
