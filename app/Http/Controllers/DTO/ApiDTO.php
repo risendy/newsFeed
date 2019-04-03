@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Helpers;
+namespace App\Http\Controllers\DTO;
 
 use App\Http\Controllers\Controller;
 
-class UrlHelper extends Controller
+class ApiDTO extends Controller
 {
-    protected $client;
     protected $url_core='https://newsapi.org/v2/';
 
     protected $country='us';
@@ -15,16 +14,6 @@ class UrlHelper extends Controller
 
     protected $type='top-headlines';
     protected $availbleCategories=array("business", "entertainment", "general", "health", "science", "sports", "technology");
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        
-    }
 
     public function buildUrl()
     {

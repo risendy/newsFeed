@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Services;
 
 
-use App\Http\Controllers\Helpers\UrlHelper;
+use App\Http\Controllers\DTO\ApiDTO;
 use App\Http\Controllers\Interfaces\HttpClientInterface;
 use GuzzleHttp\Client;
 
@@ -20,7 +20,7 @@ class GruzzleClient implements HttpClientInterface
      */
     private $client;
     /**
-     * @var UrlHelper
+     * @var ApiDTO
      */
     private $apiKey;
 
@@ -30,9 +30,9 @@ class GruzzleClient implements HttpClientInterface
         $this->apiKey = $apiKey;
     }
 
-    public function sendRequest($urlHelper)
+    public function sendRequest($apiDTO)
     {
-        $response =  $this->client->request('GET', $urlHelper->buildUrl(), [
+        $response =  $this->client->request('GET', $apiDTO->buildUrl(), [
             'verify'=> false,
             'headers' => [
                 'Accept' => 'application/json',

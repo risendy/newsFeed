@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Helpers\GuzzleHelperController;
-use App\Http\Controllers\Helpers\UrlHelper;
+use App\Http\Controllers\DTO\ApiDTO;
 use App\Http\Controllers\Services\GruzzleClient;
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
