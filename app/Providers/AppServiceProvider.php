@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Helpers\GuzzleHelperController;
+use App\Http\Controllers\Helpers\UrlHelper;
+use App\Http\Controllers\Services\GruzzleClient;
+use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\Http\Controllers\Interfaces\HttpClientInterface', function () {
+            return new GruzzleClient(new Client(), $_ENV['NEWS_FEED_APIKEY']);
+        });
     }
 }
