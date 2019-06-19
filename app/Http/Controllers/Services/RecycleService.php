@@ -18,10 +18,10 @@ class RecycleService extends Controller
         
     }
 
-    public function removeOldNews()
+    public function removeOldNews($days)
     {
          $newsRepository=new NewsRepository();
 
-         $newsRepository->removeOldNews(3);
+         $newsRepository->removeOldNews($days);
       }  
 }

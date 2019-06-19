@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\GetNewsCommand::class,
+        Commands\RecycleNewsCommand::class
     ];
 
     /**
