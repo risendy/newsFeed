@@ -26,6 +26,10 @@ Project is created with:
 ```
 composer install
 ```
+#### Run migrations
+```
+php artisan migrate
+```
 #### To fetch news from NewsApi use command:
 ```
 php artisan get:news
