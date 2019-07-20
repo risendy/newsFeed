@@ -99,3 +99,10 @@ footer p {
   margin-top:8px;
   margin-bottom:8px;
 }
+
+#bottomRightBox {
+  margin-top:15px;
+  position:absolute;                  
+  bottom:35;                          
+  right:25;
+}

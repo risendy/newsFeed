@@ -27,12 +27,19 @@
                          </span>
 
                     <div class="caption">
-                        <h3 id="thumbnail-label"><a href="{{$item->url}}">{{$item->title}}</a><a class="anchorjs-link"
-                                                                                       href="#thumbnail-label"><span
-                                class="anchorjs-icon"></span></a></h3>
+                        <h3 id="thumbnail-label"><a href="{{ url('showNews', [$item->id]) }}}">{{$item->title}}</a><a class="anchorjs-link" href="#thumbnail-label">
+                          <span
+                                class="anchorjs-icon">
+                                  
+                          </span></a></h3>
 
                         <p>{{$item->description}}</p>
 
+                        <div id="bottomRightBox">
+                          <a href="{{ url('showNews', [$item->id]) }}" style="text-decoration: none;">
+                            <span class="badge">{{ $item->comments()->count() }}</span> <i class="fa fa-lg fa-comments"></i>
+                          </a>
+                        </div>
                     </div>
                 </div>
             </div>

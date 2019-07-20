@@ -53,4 +53,9 @@ class NewsRepository
    return News::where('creation_date', '<=', Carbon::now()->subDays($days)->toDateTimeString())->delete();
  }
 
+ public function findNewsById($id)
+ {
+   return News::find($id);
+ }
+
 }

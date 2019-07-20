@@ -12,5 +12,15 @@ class News extends Model
     public $timestamps = true;
 
     const CREATED_AT = 'creation_date';
-    const UPDATED_AT = 'last_update';    
+    const UPDATED_AT = 'last_update'; 
+
+    /**
+     * The has Many Relationship
+     *
+     * @var array
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }   
 }

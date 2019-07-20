@@ -13,8 +13,10 @@
 */
 
 Route::get('/', 'HomepageController@index')->name('homepage');
+Route::get('/showNews/{id}', 'NewsController@showNews')->name('showNews');
 Route::get('type/{id}', 'HomepageController@getPage')->name('type');
 Route::post('search', 'HomepageController@search')->name('search');
+Route::post('storeComment', 'CommentController@store')->name('storeComment');
 
 Route::get('getNews', 'Commands\NewsController@getNews');
 Route::get('recycleNews', 'Commands\RecycleController@recycleNews');
