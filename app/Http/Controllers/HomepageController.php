@@ -41,7 +41,7 @@ class HomepageController extends Controller
        return view('pages.pages', compact('page_id', 'news'));
     }  
 
-    public function search (Request $request)
+    public function search(Request $request)
     {
       $newsRepository=new NewsRepository();
 

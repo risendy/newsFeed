@@ -20,7 +20,12 @@ class CommentController extends Controller
         ]);
    
         $input = $request->all();
-        $input['user_id'] = null;
+        $input['user_id'] = $request['user_id'];
+
+        if (!isset($request['user_id']))
+        {
+            $input['user_id']=NULL;
+        }
     
         Comment::create($input);
    

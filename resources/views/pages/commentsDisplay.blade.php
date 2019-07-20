@@ -12,15 +12,18 @@
         </div><!-- /panel panel-default -->
         <a href="" id="reply"></a>
         @if (Auth::check())
-        <form method="post" action="{{url('storeComment')}}">
+        <form class="form-inline" method="post" action="{{url('storeComment')}}">
             <div class="form-group">
                 {{ csrf_field() }}
                 <input type="text" name="body" class="form-control" />
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
                 <input type="hidden" name="news_id" value="{{ $news_id }}" />
                 <input type="hidden" name="parent_id" value="{{ $comment->id }}" />
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-warning" value="Reply" />
+                <button type="submit" class="btn btn-default" value="Reply" />
+                    <i class="fa fa-reply"></i> Reply
+                </button>
             </div>
         </form>
         @endif

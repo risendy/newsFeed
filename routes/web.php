@@ -20,3 +20,7 @@ Route::post('storeComment', 'CommentController@store')->name('storeComment');
 
 Route::get('getNews', 'Commands\NewsController@getNews');
 Route::get('recycleNews', 'Commands\RecycleController@recycleNews');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

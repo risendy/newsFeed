@@ -19,17 +19,41 @@
         <li class="@if ($page==6) active @endif"><a href="{{route('type', ['id'=>6])}}">Technology</a></li>
       </ul>
 
-      <form class="navbar-form navbar-right" method="POST" action="{{route('search')}}">
-        <div class="form-group">
+      <ul class="nav navbar-nav navbar-right">
+      
+      <!-- <form class="form-inline" method="POST" action="{{route('search')}}">
           {{ csrf_field() }}
           <input class="form-control mr-sm-2" name="searchText" type="text" placeholder="Search" aria-label="Search" value="@if(isset($searchText)) {{$searchText}} @endif">
-        </div>
-      </form>
-
-      <!-- <form class="form-inline mt-2 mt-md-0 text-right searchColumn " method="POST" action="{{route('search')}}">
-              {{ csrf_field() }}
-              <input class="form-control mr-sm-2" name="searchText" type="text" placeholder="Search" aria-label="Search" value="@if(isset($searchText)) {{$searchText}} @endif">
       </form> -->
+
+      <!-- Authentication Links -->
+      @if (Auth::guest())
+          <li><a href="{{ route('login') }}">Login</a></li>
+          <li><a href="{{ route('register') }}">Register</a></li>
+      @else
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  {{ Auth::user()->name }} <span class="caret"></span>
+              </a>
+
+              <ul class="dropdown-menu" role="menu">
+                  <li>
+                      <a href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                          Logout
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          {{ csrf_field() }}
+                      </form>
+                  </li>
+              </ul>
+          </li>
+      @endif
+
+      
+    </ul>
 
 
     </div><!--/.nav-collapse -->

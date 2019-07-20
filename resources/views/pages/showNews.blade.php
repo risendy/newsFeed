@@ -36,6 +36,23 @@
   <div class="row">
       <div class="col-md-12">
           <h4> Comments: </h4>
+          @if (Auth::check())
+          <form class="form-inline" method="post" action="{{url('storeComment')}}">
+              <div class="form-group">
+                  {{ csrf_field() }}
+                  <textarea type="text" name="body" class="form-control" cols="100" rows="6"/> </textarea>
+                  <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
+                  <input type="hidden" name="news_id" value="{{ $news->id }}" />
+              </div>
+            </br>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-default"/>
+                    <i class="fa fa-plus"> </i> Add new comment
+                  </button>
+              </div>
+          </form>
+          @endif
+
           @include('pages.commentsDisplay', ['comments' => $news->comments, 'news_id' => $news->id])
       </div>
   </div>
