@@ -8,6 +8,15 @@
 
 <div class="wrapper_top">
   <div class="col-md-12">
+
+      @if (\Session::has('success'))
+          <div class="alert alert-success">
+              <ul>
+                  <li>{!! \Session::get('success') !!}</li>
+              </ul>
+          </div>
+      @endif
+
     <div class="col-md-6 col-md-offset-3">
      <h2> {{$news->title}} </h2>
      <img src="{{$news->urlToImage}}" style="max-width:100%; max-height:100%;">
@@ -32,6 +41,7 @@
 @endsection
 
 @section('bottom_part')
+  <div id="app">
   <div class="bottom_wrapper">
   <div class="row">
       <div class="col-md-12">
@@ -57,6 +67,7 @@
       </div>
   </div>
   </div>
+  </div>
 @endsection
 
 @section('javascript')
@@ -72,4 +83,5 @@
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/src/loadingoverlay.min.js"></script>
     <script src="https://use.fontawesome.com/4aef0cce73.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/showNews.js')}}"></script>
 @endsection

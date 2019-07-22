@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-
+<div id="app">
 <div class="wrapper_top">
 
         @foreach ($news->chunk(4) as $chunkedNews)
@@ -56,6 +56,7 @@
         {{ $news->links() }} 
         
 
+</div><!-- End wrapper -->
 </div><!-- End wrapper -->
 
 @endsection

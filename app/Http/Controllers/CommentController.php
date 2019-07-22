@@ -29,6 +29,6 @@ class CommentController extends Controller
     
         Comment::create($input);
    
-        return back();
+        return back()->with('success', 'Comment saved successfully');   ;
     }
 }
