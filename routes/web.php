@@ -12,7 +12,7 @@
 |
 */
 
-Route::get('/', 'HomepageController@index')->name('homepage');
+Route::get('/', 'HomepageController@index')->name('/');
 Route::get('/showNews/{id}', 'NewsController@showNews')->name('showNews');
 Route::get('type/{id}', 'HomepageController@getPage')->name('type');
 Route::post('search', 'HomepageController@search')->name('search');

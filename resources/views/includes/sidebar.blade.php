@@ -11,7 +11,7 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="@if ($page==1) active @endif"><a href="{{route('homepage')}}">Home</a></li>
+        <li class="@if ($page==1) active @endif"><a href="{{route('/')}}">Home</a></li>
         <li class="@if ($page==2) active @endif"><a href="{{route('type', ['id'=>2])}}">Business</a></li>
         <li class="@if ($page==3) active @endif"><a href="{{route('type', ['id'=>3])}}">Health</a></li>
         <li class="@if ($page==4) active @endif"><a href="{{route('type', ['id'=>4])}}">Science</a></li>

@@ -37,7 +37,7 @@
 
                         <div id="bottomRightBox">
                           <a href="{{ url('showNews', [$item->id]) }}" style="text-decoration: none;">
-                            <span class="badge">{{ $item->comments()->count() }}</span> <i class="fa fa-lg fa-comments"></i>
+                            <span class="badge">{{ $item->commentsCount() }}</span> <i class="fa fa-lg fa-comments"></i>
                           </a>
                         </div>
                     </div>

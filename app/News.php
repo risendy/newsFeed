@@ -22,5 +22,10 @@ class News extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class)->where('parent_id', NULL);
-    }   
+    }
+
+    public function commentsCount()
+    {
+        return $this->hasMany(Comment::class)->count();
+    }
 }
